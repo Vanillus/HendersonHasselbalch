@@ -1,0 +1,45 @@
+# Henderson–Hasselbalch Equation
+
+# If you want to try plot functions, please activate the plt codes.
+# import matplotlib.pyplot as plt
+
+# parameters
+
+pKa = float(input("The pKa of acid is: "))
+pH = float(input("The solution pH is: "))
+c = float(input("The concentration (in Molar) of buffer is: "))
+V = float(input("The volume (in Liter) of buffer is: "))
+
+
+def hhe (pKa, pH, c, V):
+    n = c * V
+
+    b = n/(1/(10**(pH - pKa)) + 1)
+    a = n - b
+
+    r = a/b
+    ca = a/V
+    cb = b/V
+
+    print("The conjugate acid is %r mol, its concentration is %r M." % (a, ca))
+    print("The conjugate base is %r mol, its concentration is %r M." % (b, cb))
+    print("The acid/base ratio is %r." % r)
+
+    if 0.1 <= r <= 10:
+        print("This is a valid buffer, because the acid/base ratio range is within 0.1 to 10.")
+    else:
+        print("This buffer is not valid, because its acid/base ratio is out of range.")
+
+
+''' 
+    Activate this block for plot functions.
+    plt.subplot(221)
+    plt.plot(ca, cb, 'bo')
+    plt.yscale('linear')
+    plt.title('Concentration')
+    plt.grid(True)
+    plt.show()
+'''
+
+
+hhe(pKa, pH, c, V)
